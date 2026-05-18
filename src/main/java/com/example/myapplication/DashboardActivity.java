@@ -34,14 +34,14 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // 1. Cek Keamanan Sesi (Apakah user benar-benar sudah login?)
+        // 1. Cek Keamanan Sesi
         sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         if (!sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)) {
             // Jika belum login, tendang kembali ke MainActivity (Halaman Login)
             Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-            return; // Hentikan eksekusi kode di bawahnya
+            return;
         }
 
         // 2. Inisialisasi Komponen dari XML

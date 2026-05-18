@@ -32,15 +32,15 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btnCancel = findViewById(R.id.btnCancel);
 
-        // Inisialisasi SharedPreferences (Materi 6)
+        // Inisialisasi SharedPreferences
         sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-        // Cek apakah user sudah login sebelumnya. Jika ya, langsung ke Dashboard!
+        // Cek apakah user sudah login sebelumnya
         if (sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)) {
             goToDashboard();
         }
 
-        // Logika Tombol Cancel (Mereset inputan)
+        // Logika Tombol Cancel
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,9 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 if (username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(MainActivity.this, "User dan Password Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
                 }
-                // Validasi Hardcode sesuai soal UTS
                 else if (username.equals("admin") && password.equals("admin123")) {
-                    // Simpan status login menjadi TRUE
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean(KEY_IS_LOGGED_IN, true);
                     editor.apply();
@@ -77,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Method Intent untuk pindah halaman (Materi 4)
+    // Intent untuk pindah halaman
     private void goToDashboard() {
         Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
         startActivity(intent);
